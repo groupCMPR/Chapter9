@@ -11,7 +11,7 @@ using namespace std;
 //PROTOTYPES
 int menuOption();
 
-//Option 1 - Pattern of astricks and blanks
+//Option 1 - Pattern of asterisks and blanks
 void option1();
 //Option 2 - Guess a number
 void option2();
@@ -48,7 +48,7 @@ int menuOption()
 {
 	cout << "\n\tCMPR131 Chapter 9: Recursive Applications (Final Group 2)";
 	cout << "\n\t" << string(100, char(205));
-	cout << "\n\t\t1> Pattern of astricks and blanks";
+	cout << "\n\t\t1> Pattern of asterisks and blanks";
 	cout << "\n\t\t2> Guess a number";
 	cout << "\n\t\t3> Solve Tower of Hanoi";
 	cout << "\n\t\t4> Solve n-Queens";
@@ -63,7 +63,7 @@ int menuOption()
 //Postcondition: Outputs the pattern
 void option1()
 {
-	cout << "\n\t1> Pattern of astricks and blanks";
+	cout << "\n\t1> Pattern of asterisks and blanks";
 }
 
 //Precondition : Called from main
