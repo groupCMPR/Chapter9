@@ -21,7 +21,7 @@ void option3();
 void option4();
 
 //Precondition : N/A
-//Posctondition: Calls option 1, 2, 3, and 4
+//Postcondition: Calls option 1, 2, 3, and 4
 int main()
 {
 	do
@@ -43,7 +43,7 @@ int main()
 }
 
 //Precondition : Calls from main
-//Posctondition: Returns integer choice
+//Postcondition: Returns integer choice
 int menuOption()
 {
 	cout << "\n\tCMPR131 Chapter 9: Recursive Applications (Final Group 2)";
