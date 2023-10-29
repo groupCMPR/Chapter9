@@ -6,6 +6,7 @@
 
 //HEADER FILE
 #include "input.h"  //For input validation
+#include "Queen.h"
 using namespace std;
 
 //PROTOTYPES
