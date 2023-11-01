@@ -96,7 +96,7 @@ int numbersGuessedRecursion(int lowestNumber, int biggestNumber, int numberGuess
 
 	if (biggestNumber - 1 == lowestNumber + 1)
 	{
-		cout << "\n\tYour number must be " << lowestNumber + 1 << ".";
+		cout << "\n\tYour number must be " << ++lowestNumber << ".";
 		return numberGuess;
 	}
 	if (biggestNumber != 0)
