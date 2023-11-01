@@ -16,6 +16,7 @@ int menuOption();
 void option1();
 //Option 2 - Guess a number
 void option2();
+int numbersGuessedRecursion(int, int, int);
 //Option 3 - Solve Tower of Hanoi
 void option3();
 //Option 4 - Solve n-Queens
@@ -71,11 +72,61 @@ void option1()
 //Postcondition: Output number of guesses 
 void option2()
 {
-	cout << "\n\t2> Guess your number between 1 to " << ".";
-	cout << "\n\tThink of a number from 1 to " << ".";
-	cout << "\n\tIs your number " << "? (Y-yes or N-no) ";
-	cout << "\n\tIs your number larger than " << "? (Y-yes or N-no) ";
-	cout << "\n\tNumber of guesses: ";
+	srand(time(0));
+	int random = rand() % 1000 + 1;
+	int lowestNumber = 1;
+	int numberGuess = 0;
+	bool choice = false;
+
+	cout << "\n\t2> Guess your number between 1 to " << random << ".";
+	cout << "\n\tThink of a number from 1 to " << random << ".";
+	cout << '\n';
+	system("pause");
+
+	numberGuess = numbersGuessedRecursion(lowestNumber, random, numberGuess);
+
+	cout << "\n\tNumber of guesses: " << numberGuess;
+}
+
+//Precondition : Calling from option 2; passing in valid positive integers
+//Postcondition: Return the number of guesses
+int numbersGuessedRecursion(int lowestNumber, int biggestNumber, int numberGuess)
+{
+	char choice = 'N';
+	int middle = 0;
+
+	if (biggestNumber - 1 == lowestNumber + 1)
+	{
+		cout << "\n\tYour number must be " << ++lowestNumber << ".";
+		return numberGuess;
+	}
+	if (biggestNumber != 0)
+	{		
+		middle = lowestNumber + ((biggestNumber - lowestNumber) / 2);
+		
+		choice = inputChar("\n\tIs your number " + to_string(middle) + "? (Y-yes or N-no) ", static_cast<string>("YN"));
+		if (choice == 'Y')
+		{
+			numberGuess++;
+			return numberGuess;
+		}
+		else 
+		{
+			choice = inputChar("\tIs your number larger than " + to_string(middle) + "? (Y-yes or N-no) ", static_cast<string>("YN"));
+			if (choice == 'Y')
+			{
+				lowestNumber = middle;
+				numberGuess++;
+				return numbersGuessedRecursion(lowestNumber, biggestNumber, numberGuess);
+			}
+			else
+			{
+				biggestNumber = middle;
+				numberGuess++;
+				return numbersGuessedRecursion(lowestNumber, biggestNumber, numberGuess);
+			}
+		}
+	}
 }
 
 //Precondition : Called from main
