@@ -87,14 +87,22 @@ void option2()
 	cout << "\n\tNumber of guesses: " << numberGuess;
 }
 
+//Precondition : Calling from option 2; passing in valid positive integers
+//Postcondition: Return the number of guesses
 int numbersGuessedRecursion(int lowestNumber, int biggestNumber, int numberGuess)
 {
 	char choice = 'N';
 	int middle = 0;
 
+	if (biggestNumber - 1 == lowestNumber + 1)
+	{
+		cout << "\n\tYour number must be " << lowestNumber + 1 << ".";
+		return numberGuess;
+	}
 	if (biggestNumber != 0)
 	{		
 		middle = lowestNumber + ((biggestNumber - lowestNumber) / 2);
+		
 		choice = inputChar("\n\tIs your number " + to_string(middle) + "? (Y-yes or N-no) ", static_cast<string>("YN"));
 		if (choice == 'Y')
 		{
@@ -106,24 +114,12 @@ int numbersGuessedRecursion(int lowestNumber, int biggestNumber, int numberGuess
 			choice = inputChar("\tIs your number larger than " + to_string(middle) + "? (Y-yes or N-no) ", static_cast<string>("YN"));
 			if (choice == 'Y')
 			{
-				if (lowestNumber == middle)
-				{
-					cout << "\n\tYour number must be " << middle + 1 << ".";
-					numberGuess++;
-					return numberGuess;
-				}
 				lowestNumber = middle;
 				numberGuess++;
 				return numbersGuessedRecursion(lowestNumber, biggestNumber, numberGuess);
 			}
 			else
 			{
-				if (biggestNumber == middle)
-				{
-					cout << "\n\tYour number must be " << middle - 1 << ".";
-					numberGuess++;
-					return numberGuess;
-				}
 				biggestNumber = middle;
 				numberGuess++;
 				return numbersGuessedRecursion(lowestNumber, biggestNumber, numberGuess);
