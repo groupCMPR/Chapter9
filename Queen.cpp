@@ -1,3 +1,7 @@
+//Names: Neidy Malaga 
+//Date: 10/28/2023
+//Description: cpp file for class Queen
+
 #include "Queen.h"
 
 //precondition: size must be 1...64, column must be 1...size
