@@ -1,3 +1,7 @@
+//Names: Neidy Malaga 
+//Date: 10/28/2023
+//Description: Header file for class Queen
+
 #pragma 
 #include <iostream>
 #include <vector>
