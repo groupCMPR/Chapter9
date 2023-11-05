@@ -149,15 +149,15 @@ void option4()
 	int column = inputInteger("\n\tEnter the column position(1.." + to_string(board_space) + ") of the first Queen on row 1: ", 1, board_space);
 
 	Queen q1(board_space, column);
-	
+
 	//solve the n- queens
-	if(board_space != 2 && board_space != 3)
-		q1.solve_Queen(column-1, 0);
+	if (board_space > 3)
+		q1.solve_Queens(1);
 
 	//display
-	if (q1.is_Correct()) 
+	if (q1.is_Correct())
 		cout << q1;
-	else
+	else 
 		cout << "\n\tNo solution";
 
 }
