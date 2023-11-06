@@ -25,10 +25,14 @@ int main() {
 }
 
 void option3() {
-
     char playAgain;
 
     do {
+        system("cls");
+        cout << "\n\tTower of Hanoi (Recursive)";
+        cout << "\n\t" << string(100, char(196));
+        cout << endl;
+
         int numOfRings = inputInteger("\n\tEnter the number of rings (1...64): ", 1, 64);
         cout << endl;
         towers game(numOfRings);
