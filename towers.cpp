@@ -63,7 +63,7 @@ void towers::moveRing(char fromStack, char toStack)
 //Postcondition: displays all the towers 
 void towers::displayAllTowers(int numberOfRings) const
 {
-	if (numberOfRings >= 10) {
+	if (numberOfRings > 9) {
 		stack<int> tempStacks[3];
 		for (int i = 0; i < 3; i++)
 		{
@@ -92,35 +92,53 @@ void towers::displayAllTowers(int numberOfRings) const
 		cout << "\n\tA\tB\tC" << endl;
 	}
 	else {
+
 		stack<int> tempStacks[3];
-		for (int i = 0; i < 3; i++)
-		{
+
+		for (int i = 0; i < 3; i++) {
 			tempStacks[i] = pegs[i].getStack();
 		}
-		cout << '\t' << char(186) << '\t' << char(186) << '\t' << char(186);
+
+		int baseWidth = numberOfRings * 2 + 1;
+
+		if (numberOfRings <= 3) {
+			baseWidth = max(baseWidth, 7);
+		}
+
+		for (int i = 0; i < 3; i++) {
+			cout << '\t' << string((baseWidth - 7) / 2, char(32)) << string(3, char(32)) << char(186) << string(3, char(32)) << string((baseWidth - 7) / 2, char(32));
+		}
 		cout << endl;
-		for (int i = numberOfRings; i > 0; i--)
-		{
 
-			for (int j = 0; j < 3; j++)
-			{
+		for (int i = numberOfRings; i > 0; i--) {
+			for (int j = 0; j < 3; j++) {
+				int space = (baseWidth - 1) / 2;
 
-				if (!tempStacks[j].empty() && tempStacks[j].size() >= i)
-				{
-					cout << "\t" << tempStacks[j].top();
+				if (!tempStacks[j].empty() && tempStacks[j].size() >= i) {
+					int diskSize = tempStacks[j].top();
+					int padding = (baseWidth - (diskSize * 2 + 1)) / 2;
+
+					cout << '\t' << string(padding, char(32)) << string(diskSize, char(223)) << tempStacks[j].top() << string(diskSize, char(223)) << string(padding, char(32));
 					tempStacks[j].pop();
 				}
 				else {
-					cout << "\t" << char(186);
+					cout << '\t' << string(space, char(32)) << char(186) << string(space, char(32));
 				}
 			}
 			cout << endl;
 		}
-		cout << "     " << string(3, char(205)) << char(202) << string(3, char(205)) << " " << string(3, char(205)) << char(202) << string(3, char(205)) << " " << string(3, char(205)) << char(202) << string(3, char(205));
-		cout << "\n\tA\tB\tC" << endl;
+
+		for (int i = 0; i < 3; i++) {
+			cout << '\t' << string((baseWidth - 7) / 2, char(32)) << string(3, char(205)) << char(202) << string(3, char(205)) << string((baseWidth - 7) / 2, char(32));
+		}
+		cout << endl;
+
+		for (int i = 0; i < 3; i++) {
+			cout << '\t' << string((baseWidth - 7) / 2, char(32)) << string(3, char(32)) << char('A' + i) << string(3, char(32)) << string((baseWidth - 7) / 2, char(32));
+		}
+		cout << endl;
 	}
 }
-
 //Precondition:none
 //Postcondition: checks for wins
 bool towers::winCheck(int numOfRings)
