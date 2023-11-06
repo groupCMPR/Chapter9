@@ -1,4 +1,4 @@
-//Names: Alexis Martinez, Angie Campos, Neidy Malaga, & Vivian Huynh
+//Names: Alexis Martinez, Angie Campos, Daniel Hernandez, Neidy Malaga, & Vivian Huynh
 //Date: 10/27/2023
 // Professor Quach
 //Description: Chapter 9 Assignment - Recursive Applications
@@ -7,13 +7,13 @@
 //consideration the recursive stack.
 //Groups: (please fill in your name for your assigned roles)
 //Option 1 (pattern): Angie
-//Option 2 (number guessing game): Vivian
+//Option 2 (number guessing game): Daniel, Vivian
 //Option 3 (tower of hanoi): Alexis
 //Option 4 (n-queens): Neidy
 //main.cpp organization: Vivian
 
 #include <iostream> //For cout
-#include <sstream>
+#include <sstream>  //For stringstream
 
 //HEADER FILE
 #include "input.h"  //For input validation
