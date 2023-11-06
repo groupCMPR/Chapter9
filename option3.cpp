@@ -20,6 +20,8 @@ int main() {
         system("pause");
 
     } while (true);
+
+    return EXIT_SUCCESS;
 }
 
 void option3() {
