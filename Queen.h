@@ -1,3 +1,7 @@
+//Names: Neidy Malaga 
+//Date: 10/28/2023
+//Description: Header file for class Queen
+
 #pragma 
 #include <iostream>
 #include <vector>
@@ -14,10 +18,10 @@ public:
 	Queen(const int&, const int&);
 
 
-	//mutators
+	//mutator
 	void solve_Queens(int row);
 
-	//accessor
+	//accessors
 	bool is_Correct() const;
 	int get_Size() const;
 	char get_Char(const int&, const int&) const;
