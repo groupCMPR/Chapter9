@@ -1,6 +1,10 @@
+//Names: Neidy Malaga 
+//Date: 10/28/2023
+//Description: cpp file for class Queen
+
 #include "Queen.h"
 
-//precondition: size must be 1...64, column must be 1...size
+//precondition : size must be 1...64, column must be 1...size
 //postcondition:sets board_size, fills board, sets initial_column
 Queen::Queen(const int& size, const int& column) {
 	board_size = size;
@@ -15,7 +19,7 @@ Queen::Queen(const int& size, const int& column) {
 //							MUTATORS
 //---------------------------------------------------------------------
 
-//precondition: row (should usually be row 1)
+//precondition : row (should usually be row 1)
 //postcondition: fills in the board with Q using recursive 
 void Queen::solve_Queens(int row) {
 	//stop case
@@ -32,7 +36,7 @@ void Queen::solve_Queens(int row) {
 			//if backtrack_finish is true, that means it has reached the base case and all answers are correct, therefore recursion call will unwind
 			//if backtrack_finish is false, that means row was not filled
 			//if backtrack_finish is false and row is at the inital row for recursion (aka starting row 1) will fully exit out of the function
-			
+
 			if (backtrack_finish) {
 				return;
 			}
@@ -57,7 +61,7 @@ void Queen::solve_Queens(int row) {
 //							ACCESSORS
 //---------------------------------------------------------------------
 
-//precondition: board must be filled (board_sizexboard_size)
+//precondition : board must be filled (board_sizexboard_size)
 //postcondition: returns backtrack_finish or false(board size 2 or 3)
 bool Queen::is_Correct() const {
 	if (board_size == 2 || board_size == 3)
@@ -69,7 +73,9 @@ bool Queen::is_Correct() const {
 	return backtrack_finish;
 }
 
-bool Queen::queen_Check(const int& row, const int& col) const{
+//precondition : going through the row and columns 
+//postcondition: returns false if a Q is found diagonally, horizontally, or vertically
+bool Queen::queen_Check(const int& row, const int& col) const {
 	for (int i = row - 1, dia_top = 1; i > -1; --i, ++dia_top) {
 
 		if (col + dia_top < board_size && board.at(i).at(col + dia_top) == 'Q')
@@ -85,13 +91,13 @@ bool Queen::queen_Check(const int& row, const int& col) const{
 	return true;
 }
 
-//precondition:N/A
+//precondition : N/A
 //postcondition: returns board_size
 int Queen::get_Size() const {
 	return board_size;
 }
 
-//precondition: board must be filled, correct row and column
+//precondition : board must be filled, correct row and column
 //postcondition: returns char at row, column
 char Queen::get_Char(const int& row, const int& col) const {
 	return board.at(row).at(col);
@@ -101,8 +107,9 @@ char Queen::get_Char(const int& row, const int& col) const {
 //---------------------------------------------------------------------
 //							FRIEND
 //---------------------------------------------------------------------
-//Precondition: class Queen, outstream
-//Postcondition: displays all elements in stack of Queen
+
+//precondition : class Queen, outstream
+//postcondition: displays all elements in stack of Queen
 ostream& operator<<(ostream& out, const Queen& obj) {
 	out << "\n\t" << obj.get_Size() << "-Queens";
 
