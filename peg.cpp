@@ -1,4 +1,7 @@
-//Alexis 
+//Names: Alexis Martinez
+//Date: 10/28/2023
+//Description: cpp file for class peg
+
 #include "peg.h"
 //default
 peg::peg() {};
