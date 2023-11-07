@@ -1,6 +1,5 @@
-//Names: Alexis Martinez, Angie Campos, Daniel Hernandez, Neidy Malaga, & Vivian Huynh
+//Names: Alexis Martinez, Angie Campos, Daniel Hernandez, John Kim, Neidy Malaga, & Vivian Huynh
 //Date: 10/27/2023
-// Professor Quach
 //Description: Chapter 9 Assignment - Recursive Applications
 //The purpose of this assignment is to familiarize ourselves with recursive functions. The following options will print a pattern, 
 //guess a number, simulate the tower of hanoi game, and simulate the n-queens game. Each equation uses recursive functions, and takes into 
@@ -11,19 +10,23 @@
 //Option 3 (tower of hanoi): Alexis
 //Option 4 (n-queens): Neidy
 //main.cpp organization: Vivian
+//testing code: John
 
 #include <iostream> //For cout
 #include <sstream>  //For stringstream
 
-//HEADER FILE
+//HEADER FILE 
 #include "input.h"  //For input validation
-#include "Queen.h" //for option 4
+#include "towers.h" //For option 3
+#include "peg.h"    //For option 3
+#include "input.h"  //For option 3
+#include "Queen.h"  //For option 4
 using namespace std;
 
 //PROTOTYPES
 int menuOption();
 
-//Option 1 - Pattern of asterisks and blanks
+//Option 1 - Pattern of astricks and blanks
 void option1();
 string operator*(const string& str, size_t times);
 string recursiveFunction(unsigned char spaces, unsigned char length);
@@ -46,11 +49,10 @@ int main()
 		switch (menuOption())
 		{
 		case 0: exit(0);
-		case 1: system
-			  ("cls"); option1(); break;
+		case 1: system("cls"); option1(); break;
 		case 2: system("cls"); option2(); break;
 		case 3: system("cls"); option3(); break;
-		case 4: system("cls"); option4(); break;
+		case 4: option4(); break;
 		default: cout << "\t\tERROR: - Invalid option. Please re-enter"; break;
 		}
 		cout << "\n";
@@ -65,7 +67,7 @@ int menuOption()
 {
 	cout << "\n\tCMPR131 Chapter 9: Recursive Applications (Final Group 2)";
 	cout << "\n\t" << string(100, char(205));
-	cout << "\n\t\t1> Pattern of asterisks and blanks";
+	cout << "\n\t\t1> Pattern of astricks and blanks";
 	cout << "\n\t\t2> Guess a number";
 	cout << "\n\t\t3> Solve Tower of Hanoi";
 	cout << "\n\t\t4> Solve n-Queens";
@@ -76,9 +78,8 @@ int menuOption()
 	return inputInteger("\n\t\tOption: ", 0, 4);
 }
 
-
-//PreCondition: None
-//PostConidtion: 
+//Precondition : None
+//Postcondition: Output outstream
 string operator*(const string& str, size_t times) {
 	stringstream stream;
 	for (size_t i = 0; i < times; i++) {
@@ -86,9 +87,8 @@ string operator*(const string& str, size_t times) {
 	}
 	return stream.str();
 }
-
-//PreCondition: None
-//PostConidtion: Here we are applying the recursive fuction inorder to print the pattern
+//Precondition : None
+//Postcondition: Here we are applying the recursive fuction in order to print the pattern
 string recursiveFunction(unsigned char spaces, unsigned char length) {
 	// base case 
 	if (length == 0) {
@@ -102,65 +102,23 @@ string recursiveFunction(unsigned char spaces, unsigned char length) {
 	}
 
 }
-
 //PreCondition: None
-//PostConidtion: This will return our recursive function for the pattern
+//PostCondition: This will return our recursive function for the pattern
 string pattern() {
 
 	return recursiveFunction(0, 8);
 }
 
-//Precondition : Called from main
+//Precondition : None
 //Postcondition: Outputs the pattern
-void option1()
-{
+void option1() {
 	system("cls");
 
 	cout << "\n\t1>  Pattern of astricks and blanks";
 	cout << '\n' << string(55, char(196)) << endl;
 
 	cout << pattern() << endl;
-}
 
-//Precondition : Calling from option 2; passing in valid positive integers
-//Postcondition: Return the number of guesses
-int numbersGuessedRecursion(int lowestNumber, int biggestNumber, int numberGuess)
-{
-	char choice = 'N';
-	int middle = 0;
-
-	if (biggestNumber - 1 == lowestNumber + 1)
-	{
-		cout << "\n\tYour number must be " << ++lowestNumber << ".";
-		return numberGuess;
-	}
-	if (biggestNumber != 0)
-	{
-		middle = lowestNumber + ((biggestNumber - lowestNumber) / 2);
-
-		choice = inputChar("\n\tIs your number " + to_string(middle) + "? (Y-yes or N-no) ", static_cast<string>("YN"));
-		if (choice == 'Y')
-		{
-			numberGuess++;
-			return numberGuess;
-		}
-		else
-		{
-			choice = inputChar("\tIs your number larger than " + to_string(middle) + "? (Y-yes or N-no) ", static_cast<string>("YN"));
-			if (choice == 'Y')
-			{
-				lowestNumber = middle;
-				numberGuess++;
-				return numbersGuessedRecursion(lowestNumber, biggestNumber, numberGuess);
-			}
-			else
-			{
-				biggestNumber = middle;
-				numberGuess++;
-				return numbersGuessedRecursion(lowestNumber, biggestNumber, numberGuess);
-			}
-		}
-	}
 }
 
 //Precondition : Called from main
@@ -180,19 +138,73 @@ void option2()
 
 	numberGuess = numbersGuessedRecursion(lowestNumber, random, numberGuess);
 
-	cout << "\n\tNumber of guesses: " << numberGuess;
+	cout << "\n\tNumber of guesses: " << numberGuess << '\n';
+}
+//Precondition : Calling from option 2; passing in valid positive integers
+//Postcondition: Return the number of guesses
+int numbersGuessedRecursion(int lowestNumber, int biggestNumber, int numberGuess)
+{
+	char choice = 'N';
+	int middle = 0;
+
+	if (biggestNumber - 1 == lowestNumber + 1)
+	{
+		cout << "\n\tYour number must be " << ++lowestNumber << ".";
+		return numberGuess;
+	}
+	if (biggestNumber != 0)
+	{		
+		middle = lowestNumber + ((biggestNumber - lowestNumber) / 2);
+		
+		choice = inputChar("\n\tIs your number " + to_string(middle) + "? (Y-yes or N-no) ", static_cast<string>("YN"));
+		if (choice == 'Y')
+		{
+			numberGuess++;
+			return numberGuess;
+		}
+		else 
+		{
+			choice = inputChar("\tIs your number larger than " + to_string(middle) + "? (Y-yes or N-no) ", static_cast<string>("YN"));
+			if (choice == 'Y')
+			{
+				lowestNumber = middle;
+				numberGuess++;
+				return numbersGuessedRecursion(lowestNumber, biggestNumber, numberGuess);
+			}
+			else
+			{
+				biggestNumber = middle;
+				numberGuess++;
+				return numbersGuessedRecursion(lowestNumber, biggestNumber, numberGuess);
+			}
+		}
+	}
 }
 
 //Precondition : Called from main
 //Postcondition: Output number of moves to win the game Tower of Hanoi
-void option3()
-{
-	cout << "\n\t3> Tower of Hanoi (Recursive)";
-	cout << "\n\t" << string(100, char(196));
-	cout << "\n\tEnter the number of rings(1..64): ";
-	cout << "\n\tThe computer has solved the game in " << " moves.";
+void option3() {
+	char playAgain;
 
-	cout << "\n\tPlay again? (Y-yes or N-no)";
+	do {
+		system("cls");
+		cout << "\n\tTower of Hanoi (Recursive)";
+		cout << "\n\t" << string(100, char(196));
+
+		int numOfRings = inputInteger("\n\tEnter the number of rings (1...64): ", 1, 64);
+		cout << endl;
+		towers game(numOfRings);
+
+		game.displayAllTowers(numOfRings);
+
+		game.solveGame(numOfRings, 'A', 'C', 'B');
+
+		cout << "\n\tCongratulations! The game has been solved in " << game.getMove() << " moves."; // this gets the size reformat to show moves later
+
+		playAgain = inputChar("\n\tPlay again? (Y-yes or N-no): ", 'y', 'n');
+	} while (toupper(playAgain) == 'Y');
+
+	return;
 }
 
 //Precondition : Called from main
@@ -211,7 +223,6 @@ void option4()
 	//display
 	if (q1.is_Correct())
 		cout << q1;
-	else 
-		cout << "\n\tNo solution";
-
+	else
+		cout << "\n\tNo solution\n";
 }
