@@ -28,8 +28,8 @@ int menuOption();
 
 //Option 1 - Pattern of astricks and blanks
 void option1();
-string operator*(const string& str, size_t times);
-string recursiveFunction(unsigned char spaces, unsigned char length);
+string operator*(const string&, size_t);
+string recursiveFunction(unsigned char, unsigned char);
 string pattern();
 //Option 2 - Guess a number
 void option2();
