@@ -18,7 +18,6 @@
 //HEADER FILE 
 #include "input.h"  //For input validation
 #include "towers.h" //For option 3
-#include "peg.h"    //For option 3
 #include "input.h"  //For option 3
 #include "Queen.h"  //For option 4
 using namespace std;
