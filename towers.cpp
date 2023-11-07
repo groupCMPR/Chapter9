@@ -1,8 +1,11 @@
-//Alexis and Angie
+//Names: Alexis Martinez & Angie Campos 
+//Date: 10/28/2023
+//Description: Derived cpp file for class tower
+
 #include "towers.h"
 
-//Precondition:none
-//Postcondition: 
+//Precondition : positive integer of numOfRings
+//Postcondition: push the pegs
 towers::towers(int numOfRings)
 {
 	move = 0;
@@ -13,11 +16,13 @@ towers::towers(int numOfRings)
 	}
 }
 
+//Precondition : none
+//Postcondition: return the move
 int towers::getMove() {
 	return move;
 }
 
-//Precondition:none
+//Precondition : none
 //Postcondition: this will trun the char (A,B,C) into int 
 int towers::charToInt(char letter)
 {
@@ -32,7 +37,7 @@ int towers::charToInt(char letter)
 
 // Added the char(num + 'A') inorder to flip the number into a char - ASCII 
 // Added an if else if else for an empty set to out putting and other
-//Precondition:none
+//Precondition : none
 //Postcondition: This function will move the rings 
 void towers::moveRing(char fromStack, char toStack)
 {
@@ -59,7 +64,7 @@ void towers::moveRing(char fromStack, char toStack)
 	}
 }
 
-//Precondition:none
+//Precondition : none
 //Postcondition: displays all the towers 
 void towers::displayAllTowers(int numberOfRings) const
 {
@@ -139,7 +144,7 @@ void towers::displayAllTowers(int numberOfRings) const
 		cout << endl;
 	}
 }
-//Precondition:none
+//Precondition : none
 //Postcondition: checks for wins
 bool towers::winCheck(int numOfRings)
 {
@@ -150,6 +155,8 @@ bool towers::winCheck(int numOfRings)
 	else return false;
 }
 
+//Precondition : passing in valid parameters
+//Postcondition: solve game
 void towers::solveGame(int numOfRings, char fromPeg, char toPeg, char auxPeg) {
 	if (numOfRings == 1) {
 		moveRing(fromPeg, toPeg);
